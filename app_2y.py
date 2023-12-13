@@ -74,54 +74,57 @@ if st.button('**Get forecast 🥐**'):
     # st.write('Fare requested ... ')
 
     if uploaded_sales_file is not None and  uploaded_forecast_file is not None:
-        data_uploaded = [
-            ('files', uploaded_sales_file.getvalue()),
-            ('files', uploaded_forecast_file.getvalue())
-        ]
+            data_uploaded = [
+                ('files', uploaded_sales_file.getvalue()),
+                ('files', uploaded_forecast_file.getvalue())
+            ]
 
-        # st.write(data_uploaded)
-        url = 'https://bakerysales-qe7pmw7ita-ew.a.run.app'
-        # url = 'http://0.0.0.0:8000'
+            # st.write(data_uploaded)
+            url = 'https://bakerysales-qe7pmw7ita-ew.a.run.app'
+            # url = 'http://0.0.0.0:8000'
 
-        # Creating lists for saving the results
-        sales_pred_tradi = []
-        sales_pred_croissant = []
-        sales_pred_pain_au_choc = []
-        timestamp = []
-        daily_pred_multi = pd.DataFrame()
-
-        # Multiplicating the number of requests
-        request_mutiplier = 5
-        for i in range(request_mutiplier):
             res = requests.post(url + "/upload", files= data_uploaded).json()
+            #st.json(res)
 
-            # Getting the components of the prediction: timestam and units to sell
-            sales_pred_tradi=[float(x) for x in res['output']['tradi']]
-            sales_pred_croissant=[float(x) for x in res['output']['croissant']]
-            sales_pred_pain_au_choc=[float(x) for x in res['output']['pain_au_choc']]
-            timestamp=[pd.to_datetime(x) for x in res['output']['dates']]
+            # if st.checkbox('Show forecast file upload progress bar'):
 
-            # Creates a dataset with the predictions in the right format and groups by date
-            df_pred = pd.DataFrame({'Dates' : timestamp,
-                    'FC Traditional Baguette' :sales_pred_tradi,
-                    'FC Croissant': sales_pred_croissant,
-                    'FC Pain au chocolat': sales_pred_pain_au_choc
-                    })
-            df_pred.set_index('Dates', inplace=True)
-            daily_pred = df_pred[['FC Traditional Baguette','FC Croissant', 'FC Pain au chocolat' ]].groupby(df_pred.index.date).sum().round(0)
+            #     import time
+            #     'Forecast file is being uploaded, please wait...'
 
-            #Appending the newly generated prediction dataset
-            daily_pred_multi = pd.concat([daily_pred_multi, daily_pred], axis =0)
-        daily_predictions = daily_pred_multi.groupby(daily_pred_multi.index).median()
+            #     # Add a placeholder
+            #     latest_iteration = st.empty()
+            #     bar = st.progress(0)
+            #     for i in range(100):
+            #         # Update the progress bar with each iteration.
+            #         latest_iteration.text(f'Upload % {i+1}')
+            #         bar.progress(i + 1)
+            #         time.sleep(0.02)
 
-    # Communicating predictions
+    # Getting the components of the prediction: timestam and units to sell
+    # sales_prediction = res['output']['values']   ### CHANGE FROM STRING TO FLOAT
+    sales_pred_tradi = [float(x) for x in res['output']['tradi']]
+    sales_pred_croissant = [float(x) for x in res['output']['croissant']]
+    sales_pred_pain_au_choc = [float(x) for x in res['output']['pain_au_choc']]
+    timestamp = [pd.to_datetime(x) for x in res['output']['dates']]
     st.success('STEP 4: Completed!')
+
+    # Generating the predictions dataset
+    # Guild the dictionary for the POST request
+    df_pred = pd.DataFrame({'Dates' : timestamp,
+                        'FC Traditional Baguette' :sales_pred_tradi,
+                        'FC Croissant': sales_pred_croissant,
+                        'FC Pain au chocolat': sales_pred_pain_au_choc
+                        })
+    # Communicating predictions
     st.markdown (
         """ ### These are the predicted sales for next week:
         """
     )
+    df_pred.set_index('Dates', inplace=True)
 
-    #Filtering results to the week requested for forecast
+    daily_predictions = df_pred[['FC Traditional Baguette','FC Croissant', 'FC Pain au chocolat' ]].groupby(df_pred.index.date).sum().round(0)
+
+
     daily_predictions = daily_predictions[(daily_predictions.index >= pd.to_datetime(start_date).date())
                   & (daily_predictions.index <= pd.to_datetime(end_date).date())]
 
