@@ -36,8 +36,8 @@ st.set_page_config(
 # }
 # """
 
-if st.checkbox('Inject CSS'):
-    st.write(f'<style>{CSS}</style>', unsafe_allow_html=True)
+# if st.checkbox('Inject CSS'):
+#     st.write(f'<style>{CSS}</style>', unsafe_allow_html=True)
 
 
 st.markdown("""
