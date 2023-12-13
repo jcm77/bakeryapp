@@ -181,28 +181,5 @@ if st.button('**Get forecast 🥐**'):
         'FC Pain au chocolat':list(daily_predictions['FC Pain au chocolat'])
     }
 
-#     x = np.arange(len(week_days))
-
-#     width = 0.25 # the witdh of the bars
-#     multiplier = 0
-
-#     fig, ax = plt.subplots(layout='constrained')
-
-#     for attribute, measurement in daily_preds.items():
-#         offset = width * multiplier
-#         rects = ax.bar(x + offset, measurement, width, label=attribute)
-#         ax.bar_label(rects, padding=3)
-#         multiplier += 1
-
-#    # Add some text for labels, title and custom x-axis tick labels, etc.
-#     ax.set_ylabel('Units sold')
-#     ax.set_title('Weekly Sales Forecast')
-#     ax.set_xticks(x + width, week_days)
-#     ax.legend(loc='upper left')
-#     ax.set_ylim(0, 150)
-#     st.pyplot(fig)
-
-
-
 else:
     st.write('Please complete STEPS 1, 2 and 3 and make the request.')
