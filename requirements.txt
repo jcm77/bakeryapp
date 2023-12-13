@@ -2,5 +2,4 @@ streamlit
 pandas
 datetime
 requests
-subprocess
 json
