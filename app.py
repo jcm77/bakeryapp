@@ -17,24 +17,24 @@ st.set_page_config(
 
 
 
-CSS = """
-h1 {
-    color: black;
-}
-body {
-    background-color: #92a8d1;
-    }
-# .stApp {
+# CSS = """
+# h1 {
+#     color: black;
+# }
+# body {
+#     background-color: #92a8d1;
+#     }
+# # .stApp {
+# #     background-image: url(https://avatars1.githubusercontent.com/u/9978111?v=4);
+# #     background-size: cover;
+# #     opacity: 0.5;
+# # }
+# .stImage {
 #     background-image: url(https://avatars1.githubusercontent.com/u/9978111?v=4);
 #     background-size: cover;
 #     opacity: 0.5;
 # }
-.stImage {
-    background-image: url(https://avatars1.githubusercontent.com/u/9978111?v=4);
-    background-size: cover;
-    opacity: 0.5;
-}
-"""
+# """
 
 if st.checkbox('Inject CSS'):
     st.write(f'<style>{CSS}</style>', unsafe_allow_html=True)
