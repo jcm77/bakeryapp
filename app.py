@@ -1,13 +1,13 @@
 import streamlit as st
-from emoji import emojize
+# from emoji import emojize
 
 import requests
 import datetime
 import pandas as pd
 
-import os
-import subprocess
-import json
+# import os
+# import subprocess
+# import json
 
 st.set_page_config(
     page_title="Voilà - Bakery Sales Forecast", # => Voilà - Bakery Sales Forecast - Streamlit
