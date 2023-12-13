@@ -4,6 +4,5 @@ datetime
 
 # API
 requests
-os
 subprocess
 json
