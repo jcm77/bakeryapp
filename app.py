@@ -20,21 +20,30 @@ def get_base64_of_bin_file(bin_file):
 
 def set_png_as_page_bg(png_file):
     bin_str = get_base64_of_bin_file(png_file)
-    page_bg_img = '''
+    page_bg_img = f'''
     <style>
-    body {
-        background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("data:image/png;base64,%s");
-        background-size: cover;
-        filter: brightness: 0.1;
-    }
+    body {{
+        background-image: url("data:image/png;base64,{bin_str}");
+        background-size: fill;
+    }}
+    body::before {{
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
+        pointer-events: none;
+    }}
     </style>
-    ''' % bin_str
+    '''
 
     st.markdown(page_bg_img, unsafe_allow_html=True)
     return
 
 # Use the function to set background image
-set_png_as_page_bg('assets/pexels-photo.jpg')
+set_png_as_page_bg('assets/stock.jpeg')
 
 st.image("assets/image.png", width=100)
 
