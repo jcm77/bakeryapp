@@ -1,10 +1,11 @@
-import requests
 import streamlit as st
+import requests
 import datetime
 import pandas as pd
 import matplotlib.pyplot as plt
+import base64
 
-# Set page config
+# Move set_page_config to the beginning
 st.set_page_config(
     page_title="Voilà - Bakery Sales Forecast",
     page_icon="🥐",
@@ -12,21 +13,28 @@ st.set_page_config(
     initial_sidebar_state="auto"
 )
 
-# Set background image using CSS
-st.markdown(
-    """
+def get_base64_of_bin_file(bin_file):
+    with open(bin_file, 'rb') as f:
+        data = f.read()
+    return base64.b64encode(data).decode()
+
+def set_png_as_page_bg(png_file):
+    bin_str = get_base64_of_bin_file(png_file)
+    page_bg_img = '''
     <style>
-        body {
-            background-image: url('assets/bakery.jpg');
-            background-size: cover;
-        }
-        .reportview-container {
-            background: none;
-        }
+    body {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("data:image/png;base64,%s");
+        background-size: cover;
+        filter: brightness: 0.1;
+    }
     </style>
-    """,
-    unsafe_allow_html=True
-)
+    ''' % bin_str
+
+    st.markdown(page_bg_img, unsafe_allow_html=True)
+    return
+
+# Use the function to set background image
+set_png_as_page_bg('assets/pexels-photo.jpg')
 
 st.image("assets/image.png", width=100)
 
