@@ -1,20 +1,34 @@
-import streamlit as st
-# from emoji import emojize
-
 import requests
+import streamlit as st
 import datetime
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# import os
-# import subprocess
-# import json
-
+# Set page config
 st.set_page_config(
-    page_title="Voilà - Bakery Sales Forecast", # => Voilà - Bakery Sales Forecast - Streamlit
+    page_title="Voilà - Bakery Sales Forecast",
     page_icon="🥐",
-    layout="centered", # wide, centered
-    initial_sidebar_state="auto") # collapsed
+    layout="centered",
+    initial_sidebar_state="auto"
+)
+
+# Set background image using CSS
+st.markdown(
+    """
+    <style>
+        body {
+            background-image: url('assets/bakery.jpg');
+            background-size: cover;
+        }
+        .reportview-container {
+            background: none;
+        }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+st.image("assets/image.png", width=100)
 
 st.markdown("""
             # 🥖Voilà - Bakery Sales Forecast🥐
@@ -68,8 +82,12 @@ if uploaded_forecast_file is not None:
 # Button for triggering the request to API
 if st.button('**Get forecast 🥐**'):
     # print is visible in the server output, not in the page
-    st.write('Forecast requested!')
+    st.write('Forecast requested, please wait...')
     # st.write('Fare requested ... ')
+    st.markdown("""
+        <iframe src="https://giphy.com/embed/YMkogTfbM5DfBncRLO" width="480" height="270" frameborder="0" class="giphy-embed" allowfullscreen></iframe>
+        <p><a href="https://giphy.com/gifs/baking-time-cookine-YMkogTfbM5DfBncRLO">via GIPHY</a></p>
+    """, unsafe_allow_html=True)
 
     if uploaded_sales_file is not None and  uploaded_forecast_file is not None:
         data_uploaded = [
