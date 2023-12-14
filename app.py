@@ -29,8 +29,6 @@ st.markdown("""
             - **STEP 4:** Press the "Get forecast" button
 
             ... and **Voilà** get the expected sales for next week and optimize your production to the most!
-
-
             """
 )
 
