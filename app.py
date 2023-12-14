@@ -24,7 +24,7 @@ def set_png_as_page_bg(png_file):
     <style>
     body {
         background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("data:image/png;base64,%s");
-        background-size: cover;
+        background-size: fill;
         filter: brightness: 0.1;
     }
     </style>
