@@ -177,7 +177,7 @@ if st.button('**Get forecast 🥐**'):
     units_sold = daily_predictions['FC Traditional Baguette']
     max_y = max(daily_predictions['FC Traditional Baguette'])*1.1
     fig, ax = plt.subplots(figsize=(10,3))
-    bar_container = ax.bar(week_days, units_sold, color='#4A4E69')
+    bar_container = ax.bar(week_days, units_sold, color='#A68A64')
     ax.set(ylabel='units sold', title='Traditional baguette - Weekly sales forecast', ylim=(0, max_y))
     ax.bar_label(bar_container)
     st.pyplot(fig)
@@ -188,7 +188,7 @@ if st.button('**Get forecast 🥐**'):
     units_sold = daily_predictions['FC Croissant']
     max_y = max(daily_predictions['FC Croissant'])*1.1
     fig, ax = plt.subplots(figsize=(10,3))
-    bar_container = ax.bar(week_days, units_sold, color='#4A4E69')
+    bar_container = ax.bar(week_days, units_sold, color='#936639')
     ax.set(ylabel='units sold', title='Croissant - Weekly sales forecast', ylim=(0, max_y))
     ax.bar_label(bar_container)
     st.pyplot(fig)
@@ -199,7 +199,7 @@ if st.button('**Get forecast 🥐**'):
     units_sold = daily_predictions['FC Pain au chocolat']
     max_y = max(daily_predictions['FC Pain au chocolat'])*1.1
     fig, ax = plt.subplots(figsize=(10,3))
-    bar_container = ax.bar(week_days, units_sold, color='#4A4E69')
+    bar_container = ax.bar(week_days, units_sold, color='#582F0E')
     ax.set(ylabel='units sold', title='Pain au chocolat - Weekly sales forecast', ylim=(0, max_y))
     ax.bar_label(bar_container)
     st.pyplot(fig)
