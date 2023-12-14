@@ -1,6 +1,6 @@
 [theme]
-primaryColor="#00000"
+primaryColor = "rgba(0, 0, 0, 1)"  # Black
 backgroundColor="#faedcd"
-secondaryBackgroundColor="#F0F2F6"
-textColor="#262730"
-font="sans serif"
+secondaryBackgroundColor = "rgba(240, 242, 246, 0.7)"  # Faded Light Gray
+textColor = "#262730"  # Regular Text Color
+font = "sans-serif"  # Sans Serif Font
