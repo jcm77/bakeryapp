@@ -150,7 +150,7 @@ if st.button('**Get forecast 🥐**'):
     # Communicating predictions
     st.success('STEP 4: Completed!')
     st.markdown (
-        """ ### These are the predicted sales for next week:
+        """ ### Voilà, these are the predicted sales for next week:
         """
     )
 
